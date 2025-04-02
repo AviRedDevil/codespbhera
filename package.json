@@ -1,0 +1,23 @@
+{
+  "name": "--y",
+  "version": "1.0.0",
+  "description": "Working on Coding Social Media",
+  "main": "y",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "CodeSphere"
+  },
+  "keywords": [
+    "npm"
+  ],
+  "author": "Avinandan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.9"
+  }
+}
