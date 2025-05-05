@@ -8,7 +8,7 @@ const Sign_up = () => {
     <div className='flex h-screen'>
       <div className='bg-blue-500 rounded-r-xl flex w-1/2 items-center justify-center'></div>
       {/*Rightside part*/}
-      <div className=' bg-gray-200 flex w-screen justify-center items-center'>
+      <div className=' bg-gray-200 flex w-1/2 justify-center items-center'>
         <div className=' ms-2'>
           <div className='text-3xl text-center p-2 text-blue-500 font-medium'>Create an account</div>
           <div className='p-2   flex'>
