@@ -8,25 +8,28 @@ const Sign_up = () => {
     <div className='flex h-screen font-Montserrat'>
       {/* Leftside part*/}
       <div className=' bg-blue-500 rounded-r-xl flex w-1/2 items-center justify-center'>
+      <div className='ms-5'>
       <div className='text-white'>
         {/*Fill your details step start*/}
         <div className='flex items-center gap-3'>
           <div className='bg-white outline-2 outline-offset-4 w-5 h-5 rounded-full'></div>
           <div>Fill your details</div>
         </div>
-        {/*Fill your details step End here*/}
-
-        {/*Add experince step start*/}
-        <div className='outline-2 outline-offset-2 bg-white w-5 h-40'></div>
-        <div className='flex items-center gap-3'>
-          <div className='bg-white outline-2 outline-offset-4 w-5 h-5 rounded-full'></div>
-          <div>Add bio & experience</div>
+        {/*line*/}<div className='ms-2 mt-1  bg-white w-1 h-30'></div>
+          {/*Add & experience step start*/}
+          <div className='flex items-center mt-1 gap-3'>
+          <div className=' outline-2 outline-offset-4 w-5 h-5 rounded-full'></div>
+          <div>Add & Experience</div>
         </div>
-        <div className='outline-2 outline-offset-2 bg-white w-5 h-40'></div>
-        <div className='flex items-center gap-3'>
-          <div className='bg-white outline-2 outline-offset-4 w-5 h-5 rounded-full'></div>
+        {/* Add & experience step end*/}
+                {/*line*/}<div className='ms-2 mt-1  bg-white w-1 h-30'></div>
+           {/*Complete step start*/}
+           <div className='flex items-center mt-1 gap-3'>
+          <div className='outline-2 outline-offset-4 w-5 h-5 rounded-full'></div>
           <div>Complete</div>
         </div>
+        {/*Complete step end*/}
+      </div>
       </div>
       </div>
       {/*Rightside part*/}
