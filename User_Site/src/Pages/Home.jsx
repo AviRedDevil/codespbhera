@@ -2,7 +2,7 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <div>
+    <div className='font-Montserrat'>
        {/*header*/}
         <header>
             <div className=' flex justify-between  items-center mb-3'>
