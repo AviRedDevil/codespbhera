@@ -1,5 +1,9 @@
 import React from 'react'
-
+import { GrHomeRounded} from "react-icons/gr";
+import { TbMessage2 } from "react-icons/tb";
+import { MdOutlineExplore, MdOutlineAccountCircle } from "react-icons/md";
+import { RiNotificationLine,RiSettings3Line } from "react-icons/ri";
+import { IoSearch } from "react-icons/io5";
 const Home = () => {
   return (
     <div className='font-Montserrat'>
@@ -7,8 +11,8 @@ const Home = () => {
         <header>
             <div className=' flex justify-between  items-center mb-3'>
                 <div className='font-medium text-3xl ms-3'>CodeSphera</div>
-            <div>
-                <input className='border   bg-gray-200 text-black outline-none focus:border-blue-500 focus:border-2 border-gray-400 rounded' type='search' placeholder='Search here'></input>
+            <div className='flex items-center'>
+            <IoSearch/><input className='border p-2 mt-2 bg-gray-200 text-black outline-none focus:border-blue-500 focus:border-2 border-gray-400 rounded-full' type='search' placeholder='Search here'></input>
             </div>
                 <div className='flex gap-4 me-2 '>
                         <button className='text-blue-500 font-semibold'>Login</button>
@@ -24,25 +28,37 @@ const Home = () => {
             <div className='flex gap-8 justify-between  '>
                 <div >
                 {/*navbar*/}
-                    <div className='p-3 w-44 font-semibold text-black space-y-12 '>
-                        <div className="p-2 hover:bg-blue-200  rounded hover:text-blue-500">Home</div>
-                        <div className='p-2 hover:bg-blue-200  rounded hover:text-blue-500'>Messages</div>
-                        <div className='p-2 hover:bg-blue-200 rounded hover:text-blue-500'>Explore</div>
-                        <div className='p-2 hover:bg-blue-200 rounded hover:text-blue-500'>Notifications</div>
-                        <div className='p-2 hover:bg-blue-200 rounded hover:text-blue-500'>Settings</div>
-                        <div className='p-2 hover:bg-blue-200 rounded hover:text-blue-500'>My account</div>
+                    <div className='p-3 w-44 font-semibold text-black space-y-10 '>
+                        <div className='flex items-center space-x-2 p-2 rounded hover:text-blue-500 hover:bg-blue-200'>
+                        <GrHomeRounded /> <span >Home</span>
+                        </div>
+                        <div className='flex items-center space-x-2 p-2 rounded hover:text-blue-500 hover:bg-blue-200'>
+                        <TbMessage2 /> <span >Messages</span>
+                        </div>
+                        <div className='flex items-center space-x-2 p-2 rounded hover:text-blue-500 hover:bg-blue-200'>
+                        <MdOutlineExplore /><span >Explore</span>
+                        </div>
+                        <div className='flex items-center space-x-2 p-2 rounded hover:text-blue-500 hover:bg-blue-200'>
+                        <RiNotificationLine /><span>Notifications</span>
+                        </div>
+                        <div className='flex items-center space-x-2 p-2 rounded hover:text-blue-500 hover:bg-blue-200'>
+                        <RiSettings3Line /><span >Settings</span>
+                        </div>
+                        <div className='flex items-center space-x-2 p-2 rounded hover:text-blue-500 hover:bg-blue-200'onClick={''}>
+                        <MdOutlineAccountCircle /><span >My Profile</span>
+                        </div>
                     </div>
                 </div>
                 {/*End navbar part*/}
                 {/*midllebar topbar*/}
                 
                 <div className='rounded border border-zinc-200 bg-white w-9/12 h-30'>
-                    <div className='p-3 text-gray-400'>What's on your mind
+                    <div className='p-3 text-gray-400'>What's on your mind?
                         <div><input className="border-b-2 text-black border-gray-400 focus:border-blue-500 outline-none w-full"></input></div>
                             <div className='flex justify-between gap-3'>
-                            <div className='border-gray-100 rounded text-center bg-gray-100 p-2 mt-2 w-6/12'>Add Image</div>
-                            <div className='border-gray-100 rounded text-center bg-gray-100 p-2 mt-2 w-6/12'>Code Shippet</div>
-                            <div className='border-blue-800 rounded text-center text-white bg-blue-600 p-2 mt-2 w-1/4'>Post</div>
+                            <div className='border-gray-100 rounded-full text-center bg-gray-100 p-2 mt-2 w-6/12'>Add Image</div>
+                            <div className='border-gray-100 rounded-full text-center bg-gray-100 p-2 mt-2 w-6/12'>Code Shippet</div>
+                            <div className='border-blue-800 rounded-full text-center text-white bg-blue-600 p-2 mt-2 w-1/4'>Post</div>
                         </div>
                     </div>
                         <div className='py-3'>

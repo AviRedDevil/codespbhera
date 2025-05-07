@@ -9,7 +9,7 @@ const Sign_up = () => {
       {/* Leftside part*/}
       <div className=' bg-blue-500 rounded-r-xl flex w-1/2 items-center justify-center'>
       <div className='ms-5'>
-      <div className='text-white'>
+      <div className='text-[20px] text-white'>
         {/*Fill your details step start*/}
         <div className='flex items-center gap-3'>
           <div className='bg-white outline-2 outline-offset-4 w-5 h-5 rounded-full'></div>
@@ -19,14 +19,14 @@ const Sign_up = () => {
           {/*Add & experience step start*/}
           <div className='flex items-center mt-1 gap-3'>
           <div className=' outline-2 outline-offset-4 w-5 h-5 rounded-full'></div>
-          <div>Add & Experience</div>
+          <div>Step 2</div>
         </div>
         {/* Add & experience step end*/}
                 {/*line*/}<div className='ms-2 mt-1  bg-white w-1 h-30'></div>
            {/*Complete step start*/}
            <div className='flex items-center mt-1 gap-3'>
           <div className='outline-2 outline-offset-4 w-5 h-5 rounded-full'></div>
-          <div>Complete</div>
+          <div>Step 3</div>
         </div>
         {/*Complete step end*/}
       </div>
@@ -34,7 +34,7 @@ const Sign_up = () => {
       </div>
       {/*Rightside part*/}
        {/*Start form section*/}
-      <div className='text-[15px] bg-gray-200 flex w-screen font- justify-center items-center'>
+      <div className='text-[15px] bg-gray-200 flex w-screen  justify-center items-center'>
         <div className=' ms-2'>
           <div className='text-[25px] text-center p-2 text-blue-500 font-medium'>Create an account</div>
           <div className='p-2   flex'>
@@ -75,7 +75,7 @@ const Sign_up = () => {
             <button className='w-full shadow-inner shadow-blue-300 bg-blue-600 p-2 mt-4 text-white  rounded-full hover:bg-blue-500'onClick={a}>Next</button>
           </div>
           {/*log in as text click*/}
-          <div className='text-center mb-3'>Already have an account? <a href='#'className='underline font-semibold hover:text-gray-500'onClick={a}>Log in</a></div>
+          <div className='text-center mb-3'>Already have an account? <a href='#'className='underline font-semibold hover:text-gray-500'onClick={a}>Sign in</a></div>
             
         </div>
       </div>
