@@ -1,18 +1,99 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { userApi } from '../services/api' // Import the API service
+import { useNavigate } from 'react-router-dom' // If you're using react-router for navigation
 
 const Home = () => {
+  // Add state for user data and posts
+  const [userData, setUserData] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [postContent, setPostContent] = useState('')
+  const [posts, setPosts] = useState([])
+  const navigate = useNavigate() // For navigation
+
+  // Fetch user data and posts when component mounts
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Check if user is logged in
+        const userResponse = await userApi.getProfile()
+        setUserData(userResponse.data)
+        
+        // You can add an API call to fetch posts here
+        // Example: const postsResponse = await api.get('/api/posts')
+        // setPosts(postsResponse.data)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+        // User is not logged in - that's okay for the home page
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  // Handle post submission
+  const handlePostSubmit = async () => {
+    if (!postContent.trim()) return
+    
+    try {
+      // This is where you'd call your API to create a post
+      // Example: await api.post('/api/posts', { content: postContent })
+      
+      // For now, just add it to local state
+      const newPost = {
+        id: Date.now(),
+        content: postContent,
+        author: userData?.name || 'Anonymous',
+        timestamp: new Date().toISOString(),
+      }
+      
+      setPosts([newPost, ...posts])
+      setPostContent('')
+    } catch (error) {
+      console.error('Error creating post:', error)
+    }
+  }
+
+  // Handle login
+  const handleLogin = () => {
+    navigate('/login') // Navigate to login page
+  }
+
+  // Handle signup
+  const handleSignup = () => {
+    navigate('/signup') // Navigate to signup page
+  }
+
   return (
     <div className='font-Montserrat'>
        {/*header*/}
         <header>
-            <div className=' flex justify-between  items-center mb-3'>
+            <div className=' flex justify-between items-center mb-3'>
                 <div className='font-medium text-3xl ms-3'>CodeSphera</div>
             <div>
-                <input className='border   bg-gray-200 text-black outline-none focus:border-blue-500 focus:border-2 border-gray-400 rounded' type='search' placeholder='Search here'></input>
+                <input className='border bg-gray-200 text-black outline-none focus:border-blue-500 focus:border-2 border-gray-400 rounded' type='search' placeholder='Search here'></input>
             </div>
                 <div className='flex gap-4 me-2 '>
-                        <button className='text-blue-500 font-semibold'>Login</button>
-                        <button className='bg-blue-500 text-white rounded font-semibold p-1 px-2'>Sign up</button>
+                    {userData ? (
+                        <div className="flex items-center gap-2">
+                            <span>Hi, {userData.name || 'User'}</span>
+                            <button 
+                                onClick={async () => {
+                                    await userApi.logout();
+                                    setUserData(null);
+                                }}
+                                className='bg-red-500 text-white rounded font-semibold p-1 px-2'
+                            >
+                                Logout
+                            </button>
+                        </div>
+                    ) : (
+                        <>
+                            <button onClick={handleLogin} className='text-blue-500 font-semibold'>Login</button>
+                            <button onClick={handleSignup} className='bg-blue-500 text-white rounded font-semibold p-1 px-2'>Sign up</button>
+                        </>
+                    )}
                 </div>
             </div>
       </header>
@@ -38,28 +119,55 @@ const Home = () => {
                 
                 <div className='rounded border border-zinc-200 bg-white w-9/12 h-30'>
                     <div className='p-3 text-gray-400'>What's on your mind
-                        <div><input className="border-b-2 text-black border-gray-400 focus:border-blue-500 outline-none w-full"></input></div>
-                            <div className='flex justify-between gap-3'>
+                        <div>
+                            <input 
+                                className="border-b-2 text-black border-gray-400 focus:border-blue-500 outline-none w-full"
+                                value={postContent}
+                                onChange={(e) => setPostContent(e.target.value)}
+                            ></input>
+                        </div>
+                        <div className='flex justify-between gap-3'>
                             <div className='border-gray-100 rounded text-center bg-gray-100 p-2 mt-2 w-6/12'>Add Image</div>
                             <div className='border-gray-100 rounded text-center bg-gray-100 p-2 mt-2 w-6/12'>Code Shippet</div>
-                            <div className='border-blue-800 rounded text-center text-white bg-blue-600 p-2 mt-2 w-1/4'>Post</div>
+                            <div 
+                                onClick={handlePostSubmit}
+                                className='border-blue-800 rounded text-center text-white bg-blue-600 p-2 mt-2 w-1/4 cursor-pointer'
+                            >
+                                Post
+                            </div>
                         </div>
                     </div>
-                        <div className='py-3'>
-                            <div className='rounded border border-zinc-200 bg-white w-9/ h-2/12'>
-                                <div className='flex justify-between p-2'>
-                                        <div><img alt='avatar' className='size-6 rounded-full bg-amber-500'></img> <span>Alice Smit</span>h</div>
-                                        <div>2h</div>
-                                </div>
+                    <div className='py-3'>
+                        {/* Example post */}
+                        <div className='rounded border border-zinc-200 bg-white w-9/ h-2/12'>
+                            <div className='flex justify-between p-2'>
+                                <div><img alt='avatar' className='size-6 rounded-full bg-amber-500'></img> <span>Alice Smith</span></div>
                                 <div>2h</div>
-                                <div className='p-2'>Just started learning React! #Reactjs</div>
+                            </div>
+                            <div className='p-2'>Just started learning React! #Reactjs</div>
+                            <div className='flex justify-between p-2'>
+                                <div>Like</div>
+                                <div>Comment</div>
+                                <div>Share</div>
+                            </div>
+                        </div>
+                        
+                        {/* Map through posts from API */}
+                        {posts.map(post => (
+                            <div key={post.id} className='rounded border border-zinc-200 bg-white w-9/ h-2/12 mt-3'>
+                                <div className='flex justify-between p-2'>
+                                    <div><img alt='avatar' className='size-6 rounded-full bg-amber-500'></img> <span>{post.author}</span></div>
+                                    <div>Just now</div>
+                                </div>
+                                <div className='p-2'>{post.content}</div>
                                 <div className='flex justify-between p-2'>
                                     <div>Like</div>
                                     <div>Comment</div>
                                     <div>Share</div>
                                 </div>
                             </div>
-                        </div>
+                        ))}
+                    </div>
                 </div>
                 {/*end midllebar topbar part*/}
                 {/*rightside uperbar*/}
@@ -81,7 +189,7 @@ const Home = () => {
                                     <div>Emma White</div>
                                     <div className='text-blue-600 hover:text-black'>Follow</div>
                                 </div>
-                                    <button className='w-full bg-blue-600 p-2 mt-8 text-white  rounded '>Follow</button>
+                                    <button className='w-full bg-blue-600 p-2 mt-8 text-white rounded'>Follow</button>
                             </div>
                 </div>
             </div>
